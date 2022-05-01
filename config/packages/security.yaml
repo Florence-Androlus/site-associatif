@@ -1,0 +1,53 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+    # https://symfony.com/doc/current/security/experimental_authenticators.html
+    enable_authenticator_manager: true
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        users_in_memory: { memory: null }
+        in_database:
+            entity:
+                class: App\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            provider: in_database #users_in_memory
+
+            form_login:
+                login_path: security_login
+                check_path: security_login
+
+            logout:
+                path: security_logout
+                target: home
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/user, role: ROLE_ADHERENT }
+        - { path: ^/evenement, role: ROLE_BENEVOLE }
+        - { path: ^/CS, role: ROLE_CAPTURE }
+        - { path: ^/liste_electorale, role: ROLE_BENEVOLE }
+        - { path: ^/admin, role: ROLE_ADMIN }
+
+
+
+    role_hierarchy:
+        ROLE_USER: ROLE_ADHERENT
+        ROLE_BENEVOLE: ROLE_USER
+        ROLE_CAPTURE: ROLE_BENEVOLE
+        ROLE_EDITOR: ROLE_CAPTURE
+        ROLE_ADMIN: ROLE_EDITOR

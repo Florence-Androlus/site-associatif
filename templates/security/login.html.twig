@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!-- Mon container (avec une max-width) dans lequel mon contenu va être placé: https://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+<div class="container ">
+    <!-- Je crée une nouvelle ligne dans ma grille virtuelle: https://getbootstrap.com/docs/4.1/layout/grid/-->
+    <div class="row">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success"> {{ message }}  </div>
+        {% endfor %}
+        <h1>Connexion !</h1>
+            <form action="{{ path('security_login') }}" method="post">
+                <label class="submit">Adresse email</label>
+                <input placeholder="adresse email" require name="_username" type="text" class="submit form-control">
+                <label class="submit">Mot de passe</label>
+                <input placeholder="Mot de passe" require name="_password" type="password" class="submit form-control">
+                <button type="submit" class="submit btn btn-success"> Connexion !</button>
+            </form>
+         <a class="submit" href="{{path('request_resetting')}}">Mot de passe oublié ?</a>
+    </div>
+</div>
+{% endblock %}  

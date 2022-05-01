@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<!-- Mon container (avec une max-width) dans lequel mon contenu va être placé: https://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+<div class="container ">
+    <!-- Je crée une nouvelle ligne dans ma grille virtuelle: https://getbootstrap.com/docs/4.1/layout/grid/-->
+    <div class="row">
+        <!-- Par défaut (= sur mobile) mon element <main> prend toutes les colonnes (=12)
+        MAIS au dela d'une certaine taille, il n'en prendra plus que 9
+        https://getbootstrap.com/docs/4.1/layout/grid/#grid-options -->
+        <main  >
+            <!-- Je dispose une card: https://getbootstrap.com/docs/4.1/components/card/ -->
+            <article class="text-center">
+                    {% for message in app.flashes('success') %}
+            <div class="alert alert-success"> {{ message }}  </div>
+        {% endfor %}
+                <div class="container mt-4 mb-4  text-center ">
+                    <h1 style="color:#0f5f9c; font-weight:bold;font-size:35px;">Adherents : </h1>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Rôle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr class="table-active">
+                        <th scope="row">{{user.username}}</th>
+                            <td>{{user.firstname}}</td>
+                            <td>{{user.email}}</td>
+                            <td>
+                            
+                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">                        
+                            {# On boucle sur les rôles #}
+                            {% dump(user.roles) %}
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_ADHERENT" %}
+                                Adhérent
+                            {% elseif role == "ROLE_USER" %}
+                                Utilisateur
+                            {% elseif role == "ROLE_BENEVOLE" %}
+                                Benevole
+                            {% elseif role == "ROLE_EDITOR" %}
+                                Editeur
+                            {% elseif role == "ROLE_CAPTURE" %}
+                                Saisie
+                            {% elseif role == "ROLE_ADMIN" %}
+                                Administrateur
+                            {% endif %}
+                        {% endfor %}</font></font></td>
+                            <td><a href="{{ path('admin.user.edit', {id: user.id}) }}" class="btn btn-secondary">Editer</a></td>
+                        </tr> 
+                    {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+            </article>
+        </main>
+    </div>
+</div>
+{% endblock %}

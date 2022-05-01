@@ -1,0 +1,159 @@
+
+{% set show ='base.html.twig' %}
+{% extends show %}
+
+{% block body %}
+
+<!-- Mon container (avec une max-width) dans lequel mon contenu va être placé: https://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+<div class="container ">
+    <!-- Je crée une nouvelle ligne dans ma grille virtuelle: https://getbootstrap.com/docs/4.1/layout/grid/-->
+    <div class="row">
+
+      <!-- Par défaut (= sur mobile) mon element <main> prend toutes les colonnes (=12)
+        MAIS au dela d'une certaine taille, il n'en prendra plus que 9
+        https://getbootstrap.com/docs/4.1/layout/grid/#grid-options -->
+        <main  class=" text-center">
+
+            <!-- Je dispose une card: https://getbootstrap.com/docs/4.1/components/card/ -->
+            <div class="card-body">
+                <p style="color:#0f5f9c; font-weight:bold;font-size:35px;">Ensemble, pour une vie associative !</p>
+            </div>
+            
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success"> {{ message }}  </div>
+        {% endfor %}
+ 
+
+            <article class="card">
+            <div class="card-body text-center">
+            <p style="color:#0f5f9c;">Site dedié aux associations.</p>
+            <p><a href="{{ asset('assets/documents/bulletin.pdf') }}" target="_blank" style="color:#0f5f9c;font-style:italic;">Vous aussi, rejoignez-nous pour soutenir l'association de notre ville</a></p>
+
+            </div>
+            </article>
+
+    
+            
+            <article class="card">
+                <div class="card-body">         
+                    <ul class="photos">
+                        <li>
+                            <div style="border-bottom: 6px solid #57abde">
+                                <img src="{{ asset('assets/images/illustration-1.jpg') }}">
+                            </div>
+                        </li>
+                        <li>
+                            <div style="border-bottom: 6px solid #c03f97;">
+                                <img src="{{ asset('assets/images/illustration-2.jpg') }}">
+                            </div>
+                        </li>
+                        <li>
+                            <div style="border-bottom: 6px solid #83c55e;">
+                                <img src="{{ asset('assets/images/illustration-3.jpg') }}">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+    </div>
+</div>
+
+
+<div id="biographyModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="biographyClose" class="close">&times;</span>
+      <h2>Biographie de Vincent JEANBRUN</h2>
+    </div>
+    <div class="modal-body">
+      <p>Vincent JEANBRUN est né et a grandi à L’Haÿ-les-Roses, Sous-préfecture du Val-de-Marne, où il a suivi sa scolarité. A 18 ans, il s’engage en politique et y réalise un parcours militant actif : responsable jeune départemental puis national à l'Union pour un Mouvement Populaire. De 2008 à 2010, il dirige une structure d’insertion professionnelle via la création d’entreprises pour des bénéficiaires du RSA. En 2010, il mène la campagne Jeunes des régionales en Île-de-France derrière Valérie Pécresse. Alors Députée des Yvelines, il travaille à ses côtés à l’Assemblée nationale de 2012 à 2014, comme collaborateur parlementaire.</p>
+      <p>Il conduit la liste de rassemblement majoritairement choisie par les L’Haÿssiens à l’élection municipale de 2014. Représentant d’une nouvelle génération d’élus oeuvrant pour la transparence et la modernisation, il est le plus jeune Maire de France pour une commune aussi peuplée. Dans la foulée de son élection à la Mairie de L’Haÿ-Les-Roses en 2014 et dans le cadre de son mandat de Maire, il est élu Président du Comité de Bassin d’Emploi sud val-de-marnais (CBE), et Président du Syndicat intercommunal de géothermie, le 1er d’Europe.</p>
+      <p>En 2015, il est élu Conseiller départemental du Val-de-Marne pour représenter les intérêts des habitants du canton L'Haÿ-Fresnes, et siège au Conseil d’administration de Valophis, le bailleur social du Val-de-Marne. Porte-parole de Valérie Pécresse pour sa campagne des régionales la même année, il est élu Conseiller régional d’Île-de-France en décembre.</p>
+      <p>En octobre 2017, il est désigné Délégué spécial de la Région Île-de-France chargé de l’emploi, la formation professionnelle et l’apprentissage, sous la présidence de Valérie PECRESSE, qui lui renouvelle ainsi une nouvelle fois sa confiance.</p>
+      <p>Le 28 mai 2019, il a été élu vice-président en charge de l'Emploi, de l'Apprentissage et de la Formation professionnelle, sous la présidence de Valérie PECRESSE, qui lui renouvelle ainsi une nouvelle fois sa confiance.</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Vincent Jeanbrun, Maire de L’Haÿ-les-Roses, Conseiller régional d’Île-de-France</h3>
+    </div>
+  </div>
+</div>
+
+<div id="elected1Modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="elected1Close" class="close">&times;</span>
+      <h2>Les élus</h2>
+    </div>
+    <div class="modal-body">
+    <div class="list">
+      <h4>Les adjoints au Maire</h4>
+      <ul>
+      <li><span>Fernand Berson</span>, Premier maire-adjoint délégué aux finances et à la commande publique, Conseiller départemental du Val-de-Marne</li>
+      <li><span>Françoise Sourd</span>, Maire-adjoint déléguée aux affaires sociales, à la famille, aux solidarités et à la politique de la ville</li>
+      <li><span>Clément Decrouy</span>, Maire-adjoint délégué au cadre de vie, à l'espace public, aux entreprises, aux commerces, à l'artisanat et aux marchés forains</li>
+      <li><span>Anne-Laurence Delaule</span>, Maire-adjoint déléguée à l'éducation, aux affaires scolaires et à la réussite éducative</li>
+      <li><span>Pascal Lesselingue</span>, Maire-adjoint délégué à la transition écologique</li>
+      <li><span>Mélanie Nowak</span>, Maire-adjoint déléguée à la vie associative, à la culture et au marché de Noël</li>
+      <li><span>Patrick Androlus</span>, Maire-adjoint délégué à la sécurité et à la tranquilité publique</li>
+      <li><span>Katherine Gavril</span>, Maire-adjoint déléguée aux seniors et au lien intergénérationnel </li>
+      <li><span>Bernard Dupin</span>, Maire-adjoint délégué au devoir de mémoire, aux anciens combattants et au vivre-ensemble</li>
+      <li><span>Myriam Seddiki</span>, Maire-adjoint déléguée au logement, à l'habitat et aux relation avec les bailleurs</li>
+      <li><span>Daniel Aubert</span>, Maire-adjoint délégué à l'urbanisme et à l'aménagement durable</li>
+      
+      <li><span>Pascal Provent</span>, Maire-adjoint délégué à la citoyenneté, à l'insertion professionnelle et à l'agriculture urbaine, à la vie des quartiers de Lallier/Bicêtre et du Jardin Parisien</li>
+	  <li><span>Karen Chaffin</span>, Maire-adjointe déléguée à la petite-enfance, au patrimoine bâti et au jumelage, à la vie des quartiers de la Vallée-aux-Renards et du Petit Robinson</li>
+	  <li><span>Daniel Pigeon-Angelini</span>, Maire-adjoint délégué à l'économie et à l'emploi et à l'emploi et à la vie des quartiers du Centre et des Blondeaux</li>
+      </ul>
+    </div>
+    <br/>
+    </div>
+    <div class="modal-footer">
+      <h3>Ensemble, pour notre ville !</h3>
+    </div>
+  </div>
+</div>
+
+<div id="elected2Modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="elected2Close" class="close">&times;</span>
+      <h2>Les élus</h2>
+    </div>
+    <div class="modal-body">
+    <div class="list">
+      <h4>Les conseillers municipaux délégués</h4>
+      <ul>
+      <li><span>Fatah Bendali</span>, Délégué à la santé</li>
+      <li><span>Alexandra Chauvaux</span>, Déléguée au Conseil municipal des jeunes, Conseil municipal des enfants</li>
+      <li><span>Sophie Hasquenoph</span>, Déléguée au patrimoine historique</li>
+	  <li><span>Sophie Hélie</span>, Déléguée aux sports et à l'évènementiel</li>
+	  <li><span>Dominique Servanton</span>, Délégué à la jeunesse</li>
+	  <li><span>Christophe Skaf</span>, Délégué au renouvellement urbain</li>
+	  <li><span>Annick Tchienda</span>, Déléguée au handicap</li>
+      </ul>
+    </div>
+    <div class="list">
+      <h4>Les conseillers municipaux de la majorité</h4>
+      <ul>
+      <li><span>Monique Crussy</span></li>
+      <li><span>Patricia Fifi</span></li>
+      <li><span>Igor Bras Guerreiro</span></li>
+      <li><span>Michel Larjaud</span></li>
+      <li><span>Flora Laruelle</span></li>
+      <li><span>Sébastien Pennamen</span></li>
+      <li><span>Marine Renavand</span></li>
+      <li><span>Catherine Sebbagh</span></li>
+      </ul>
+    </div>
+    <br/>
+    </div>
+    <div class="modal-footer">
+      <h3>Ensemble, pour notre ville !</h3>
+    </div>
+  </div>
+</div>
+
+<script src={{ asset("assets/js/modal.js")}}></script>
+
+{% endblock %} 

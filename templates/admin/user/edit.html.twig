@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Editer l'adherent" %}
+
+{% block body %}
+    <div class="container mt-4">
+    <h1>Edition de l'adherent</h1>
+    {{ include ('admin/user/_form.html.twig',{button:'Enregistrer'}) }}
+    </div>
+{% endblock %}
+
+

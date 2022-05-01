@@ -1,0 +1,17 @@
+{# templates/emails/registration.html.twig #}
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<a href="{{url('home')}}"><img src="{{ asset('localhost:8000/public/assets/images/home1-bg.jpg') }}"></a>
+{#<img src="{{ absolute_url(asset('assets/images/home1-bg.jpg')) }}">#}
+
+<h3>Vous vous êtes inscrit !</h3>
+
+<h4>Bonjour {{ name }}!</h4>
+
+<p> Vous êtes enregistré avec succès.</p>
+
+{# example, assuming you have a route named "login" #}
+<p>Pour vous connecter, allez sur : <a href="{{ url('security_login') }}">la page de connexion</a>.</p>
+
+<p>Merci!</p>
+

@@ -1,0 +1,17 @@
+                
+                <td>{{ cs2020.Civilite}}</td>
+                <td>{{ cs2020.Nom}}</td>
+                <td>{{ cs2020.NomDusage}}</td>
+                <td>{{ cs2020.Prenoms}}</td>
+                <td>{{ cs2020.DateDeNaissance }}</td>
+                <td>{{ cs2020.tel }}</td>
+                <td>{{ cs2020.mobile }}</td>
+                <td><input class="form-check form-check-input bg-primary {% if cs2020.adhesionpbl2016 == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ cs2020.adhesionpbl2016 }} "  {% if cs2020.adhesionpbl2016 == 'VRAI' %}checked {% endif %}></span></td>
+                <td><input class="form-check form-check-input bg-primary {% if cs2020.adhesionpbl2017 == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ cs2020.adhesionpbl2017 }} "  {% if cs2020.adhesionpbl2017 == 'VRAI' %}checked {% endif %}></span></td>
+                <td><input class="form-check form-check-input bg-primary {% if cs2020.adhesionpbl2018 == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ cs2020.adhesionpbl2018 }} "  {% if cs2020.adhesionpbl2018 == 'VRAI' %}checked {% endif %}></span></td>
+                <td><input class="form-check form-check-input bg-primary {% if cs2020.adhesionpbl2019 == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ cs2020.adhesionpbl2019 }} "  {% if cs2020.adhesionpbl2019 == 'VRAI' %}checked {% endif %}></span></td>
+                <td><input class="form-check form-check-input bg-primary {% if cs2020.adhesionpbl2020 == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ cs2020.adhesionpbl2020 }} "  {% if cs2020.adhesionpbl2020 == 'VRAI' %}checked {% endif %}></span></td>
+                <td><input class="form-check form-check-input bg-primary {% if cs2020.adhesionpbl2015 == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ cs2020.adhesionpbl2015 }} "  {% if cs2020.adhesionpbl2015 == 'VRAI' %}checked {% endif %}></span></td>
+                <td><input class="form-check form-check-input bg-primary {% if cs2020.adhesionpbl2021 == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ cs2020.adhesionpbl2021 }} "  {% if cs2020.adhesionpbl2021 == 'VRAI' %}checked {% endif %}></span></td>
+            </tr>
+

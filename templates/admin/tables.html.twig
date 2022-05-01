@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gérer les tables' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les tables</h1>
+            <div class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {%  for table in tables %}
+                    <tr>
+                        <td>{{ table }}</td>
+                        <td>
+                            <a href="{{ path('admin.table.edit', {name: table}) }}" class="btn btn-secondary">Editer</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('admin.table.copier', {name: table}) }}" class="btn btn-secondary">Copier</a>
+                        </td>
+                        <td>
+                            <form method="post" action="{{ path('admin.table.delete', {name: table}) }}" style="display: inline-block" onsubmit="return confirm('Etes vous vraiment sur ?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ table)}}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+    </div>
+{% endblock %}

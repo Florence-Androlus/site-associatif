@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gérer les colonnes' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les colonnes</h1>
+
+            <div class="mt-4">
+              {%  for colonne in colonnes %}
+                <div class="fields">
+                  <div class="field field--todo">
+                    <div class="field__content">
+                      <div class="field__name">
+                        <p class="field__name-display">{{ colonne }}</p>
+                        <input type="hidden"  id="tablename" name="tablename" value="{{tablename}}" >
+                        <input type="hidden"  id="colonne" name="colonne" value="{{colonne}}" >
+                        <input class="field__name-edit input" type="text" value="{{ colonne }}" placeholder="Nom de la colonne" name="name" />
+                      </div>
+                      <div class="fieldk__buttons">
+                        <button class="field__button field__button--modify button is-warning is-small">
+                          <span class="icon is-small">
+                            <i class="fa fa-pencil-square-o"></i>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+    </div>
+{% endblock %}

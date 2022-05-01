@@ -1,0 +1,47 @@
+{% set show ='base.html.twig' %}
+
+{% extends show %}
+
+{% block body %}
+
+<ul class="tracts">
+<li style="background-color:#83c55e">
+  <div>
+    <a href={{ asset('documents/' ~ annee ~ '/Candidature.pdf')}} target="_blank">
+    <h3>Tract 1</h3>
+    <h4>Candidature<br/>Vincent Jeanbrun <br/>&nbsp;</h4></a>
+    <a href={{ asset('documents/' ~ annee ~ '/Candidature.pdf')}} target="_blank"><img src="{{ asset('assets/images/' ~ annee ~ '/tract1.jpg')}}"></a>
+    <br/><a href={{ asset('documents/' ~ annee ~ '/Candidature.pdf')}} target="_blank">Cliquez sur l'image ou ICI</a>
+  </div>
+</li>
+<li style="background-color:#c03f97">
+  <div>
+    <a href={{ asset('documents/' ~ annee ~ '/Theme-1-nouveau-marche.pdf')}} target="_blank">
+    <h3>Tract 2</h3>
+    <h4>Theme 1<br/>nouveau-marche <br/>&nbsp;</h4></a>
+    <a href={{ asset('documents/' ~ annee ~ '/Theme-1-nouveau-marche.pdf')}}  target="_blank"><img src="{{ asset('assets/images/' ~ annee ~ '/tract2.jpg')}}"></a>
+    <br/><a href={{ asset('documents/' ~ annee ~ '/Theme-1-nouveau-marche.pdf')}}  target="_blank">Cliquez sur l'image ou ICI</a>
+  </div>
+</li>
+<li style="background-color:#f1bc18">
+  <div>
+    <a href={{ asset('documents/' ~ annee ~ '/Theme-2-securite.pdf')}}  target="_blank">
+    <h3>Tract 3</h3>
+    <h4>Theme 2<br/>securite <br/>&nbsp; </h4></a>
+    <a href={{ asset('documents/' ~ annee ~ '/Theme-2-securite.pdf')}}  target="_blank"><img src="{{ asset('assets/images/' ~ annee ~ '/tract3.jpg')}}"></a>
+    <br/><a href={{ asset('documents/' ~ annee ~ '/Theme-2-securite.pdf')}} target="_blank">Cliquez sur l'image ou ICI</a>
+  </div>
+</li>
+<li style="background-color:#57abde">
+  <div>
+    <a href={{ asset('documents/' ~ annee ~ '/Theme-3-environnement-ecologie.pdf')}} target="_blank">
+    <h3>Tract 4</h3>
+    <h4>Theme 3<br/>environnement-ecologie</h4></a>
+    <a href={{ asset('documents/' ~ annee ~ '/Theme-3-environnement-ecologie.pdf')}} target="_blank"><img src="{{ asset('assets/images/' ~ annee ~ '/tract4.jpg')}}"></a>
+    <br/><a href={{ asset('documents/' ~ annee ~ '/Theme-3-environnement-ecologie.pdf')}} target="_blank">Cliquez sur l'image ou ICI</a>
+  </div>
+</li>
+</ul>
+
+
+{% endblock %} 

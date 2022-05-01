@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les comités de soutiens{% endblock %}
+
+
+{% block body %}
+ 
+    <div class="container mt-4 mb-4  text-center ">
+        <h1>Voir tous les CS {{ annee }}</h1>
+    </div>
+     <article class="card">
+        <div class="card-body mt-4">
+                <form name="nom" action="{{ path('CS.index', {'annee': 2020}) }}" method="get">
+                    <div class="row align-items-center">
+                    {{ form_start(form)}}
+                        <div class="col col-lg-auto">
+                            {{ form_row(form.Nom,{'label': "Saisir un nom"})}}
+                        </div>
+                        <div class="col col-lg-auto">
+                            {{ form_row(form.Mois,{'label': "Choisir un mois"})}}
+                        </div>
+                        <div class="col col-lg-auto">  
+                        <div class="mb-3">
+                            <label for="bday" class="form-label">Veuillez saisir la date du 1er dons :</label>
+                            <input type="date" id="bday" name="bday" class="form-select" >
+                        </div>
+                        </div>
+                        <div class="col align-self-center col-lg-auto"> 
+                            <button class="btn btn-primary" type="submit" id="button-addon2">valider</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }} 
+                </form>
+        </div>
+    </article>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Civilite</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nom D'usage</th>
+                    <th scope="col">Prénoms</th>
+                    <th scope="col">Date De Naissance</th>
+                    <th scope="col" >
+                    {% if cs.isSorted('p._1erdons') and direction=="desc" %}
+                        {{ knp_pagination_sortable(cs, "▲" , 'p._1erdons') }}
+                    {% elseif cs.isSorted('p._1erdons') and direction %}
+                        {{ knp_pagination_sortable(cs, "▼", 'p._1erdons') }}
+                    {% else %}
+                        {{ knp_pagination_sortable(cs, "▲▼", 'p._1erdons') }}
+                    {% endif %}
+                    {{ knp_pagination_sortable(cs, '1er dons', 'p._1erdons') }}
+                    </th>
+                    <th scope="col">Types 1er dons</th>
+                    <th scope="col">                    
+                    {% if cs.isSorted('p.Date1erdons') and direction=="desc" %}
+                        {{ knp_pagination_sortable(cs, "▲" , 'p.Date1erdons') }}
+                    {% elseif cs.isSorted('p.Date1erdons') and direction %}
+                        {{ knp_pagination_sortable(cs, "▼", 'p.Date1erdons') }}
+                    {% else %}
+                        {{ knp_pagination_sortable(cs, "▲▼", 'p.Date1erdonsm') }}
+                    {% endif %}
+                    {{ knp_pagination_sortable(cs, 'Date 1er dons', 'p.Date1erdons') }}
+                    </th>                   
+                    <th scope="col">                    
+                    {% if cs.isSorted('p.Mois1erdons') and direction=="desc" %}
+                        {{ knp_pagination_sortable(cs, "▲" , 'p.Mois1erdons') }}
+                    {% elseif cs.isSorted('p.Mois1erdons') and direction %}
+                        {{ knp_pagination_sortable(cs, "▼", 'p.Mois1erdons') }}
+                    {% else %}
+                        {{ knp_pagination_sortable(cs, "▲▼", 'p.Mois1erdons') }}
+                    {% endif %}
+                    {{ knp_pagination_sortable(cs, 'Mois 1er dons', 'p.Mois1erdons') }}
+                    </th>
+                    <th scope="col"> 2éme dons</th>                    
+                    <th scope="col">Types 2éme dons</th>
+                    <th scope="col">Date 2éme dons</th>
+                    <th scope="col">Mois 2éme dons</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                    {% for cs2020 in cs %}
+                        <div class="col-md-4">
+                            {% include 'cs/_cs.html.twig' %}            
+                        </div>
+                    {% endfor %}
+            </tbody>
+        </table>
+     
+            {{ knp_pagination_render( cs, 'others/twitter_bootstrap_v4_pagination.html.twig' ) }} 
+
+{% endblock %}

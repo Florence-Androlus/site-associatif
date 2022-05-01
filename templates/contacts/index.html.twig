@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les contacts{% endblock %}
+
+
+{% block body %}
+ 
+    <div class="container mt-4 mb-4  text-center ">
+        <h1>Voir tous les contacts</h1>
+    </div>
+ 
+    <article class="card">
+        <div class="card-body mt-4">
+                <form name="bureau" action="{{ path('contacts.index') }}" method="get">
+                    <div class="row align-items-center">
+                    {{ form_start(form)}}
+                        <div class="col col-lg-auto">
+                            {{ form_row(form.bureau,
+                                        {'label': "Choisir un bureau",
+                                            'attr': {
+                                                'onchange': "window.document.bureau.submit()"
+                                            }
+                                        })}}
+                        </div>
+                        <div class="col col-lg-auto">
+                            {{ form_row(form.rue, 
+                                        {'label': "Choisir la rue",
+                                            'attr': {
+                                                'onchange': "window.document.bureau.submit()"
+                                            }
+                                        }) }} 
+                        </div>
+                        <div class="col col-lg-auto">
+                            {{ form_row(form.quartier, 
+                                        {'label': "Choisir le quartier",
+                                            'attr': {
+                                                'onchange': "window.document.bureau.submit()"
+                                            }
+                                        }) }} 
+                        </div>
+                        <div class="col col-lg-auto">
+                            {{ form_row(form.VilleLocalite, 
+                                        {'label': "Choisir la ville",
+                                            'attr': {
+                                                'onchange': "window.document.bureau.submit()"
+                                            }
+                                        }) }} 
+                        </div>
+                        <div class="col col-lg-auto">  
+                        <div class="mb-3">
+                            <label for="bday" class="form-label">Veuillez saisir une date de naissance :</label>
+                            <input type="date" id="bday" name="bday" class="form-select" >
+                        </div>
+                        </div>
+                        <div class="col align-self-center col-lg-auto"> 
+                            <button class="btn btn-primary" type="submit" id="button-addon2">valider</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }} 
+                </form>
+        </div>
+    </article>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Num bd</th>
+                    <th scope="col">Num contact</th>
+                    <th scope="col">IDle2017</th>
+                    <th scope="col">IDle2015</th>
+                    <th scope="col">Civilite</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nom D'usage</th>
+                    <th scope="col">Prenoms</th>
+                    <th scope="col">Date De Naissance</th>
+                    <th scope="col">logements</th>
+                    <th scope="col">code immeuble</th>
+                    <th scope="col">Bureau</th>
+                    <th scope="col">ComplementDeLocalisation1</th>
+                    <th scope="col">ComplementDeLocalisation2</th>
+                    <th scope="col">NumeroVoie</th>
+                    <th scope="col">Type Voie</th>                        
+                    <th scope="col">Rue</th>                             
+                    <th scope="col">LieuDit</th>
+                    <th scope="col">Code Postal</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">quartier</th>
+                    <th scope="col">tel</th>
+                    <th scope="col">mobile</th>
+                    <th scope="col">email</th>
+                    <th scope="col">>desinscrit</th>
+                    <th scope="col">reseausociaux</th>
+                    <th scope="col">taillefoyer</th>
+                    <th scope="col">anciennete</th>
+                    <th scope="col">commentaire</th>                 
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                    <div class="col-md-4">
+                    {% include 'contacts/_contacts.html.twig' %}            
+                    </div>
+   
+                {% endfor %}
+            </tbody>
+        </table>
+
+            {{ knp_pagination_render( contacts , 'others/twitter_bootstrap_v4_pagination.html.twig' ) }} 
+
+
+{% endblock %}

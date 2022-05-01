@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!-- Mon container (avec une max-width) dans lequel mon contenu va être placé: https://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+<div class="container ">
+        <!-- Je crée une nouvelle ligne dans ma grille virtuelle: https://getbootstrap.com/docs/4.1/layout/grid/-->
+        <div class="row">
+                <!-- Par défaut (= sur mobile) mon element <main> prend toutes les colonnes (=12)
+                MAIS au dela d'une certaine taille, il n'en prendra plus que 9
+                https://getbootstrap.com/docs/4.1/layout/grid/#grid-options -->
+                <main>
+                    <div class="container mt-4 mb-4  text-center ">
+                        <h1 style="color:#0f5f9c; font-weight:bold;font-size:35px;">Mon profil</h1>
+                    </div>
+                
+                <article class="card">
+                 <div class="card-body">
+                    <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"><font style="vertical-align: inherit;">Nom</font></th>
+                            <th scope="col"><font style="vertical-align: inherit;">Prénom</font></th>
+                            <th scope="col"><font style="vertical-align: inherit;">Email</font></th>
+                            <th scope="col"><font style="vertical-align: inherit;">Rôle</font></th>
+                            <th scope="col"><font style="vertical-align: inherit;">Action</font></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-active">
+                        <th scope="row"><font style="vertical-align: inherit;">{{app.user.username}}</font></th>
+                                <td><font style="vertical-align: inherit;">{{app.user.firstname}}</font></td>
+                                <td><font style="vertical-align: inherit;">{{app.user.email}}</font></td>
+                                <td><font style="vertical-align: inherit;">                        
+                                        {# On boucle sur les rôles #}
+                                        {% for role in app.user.roles %}
+                                        {% if role == "ROLE_ADHERENT" %}
+                                                Adhérent
+                                        {% elseif role == "ROLE_USER" %}
+                                                Utilisateur
+                                        {% elseif role == "ROLE_EDITOR" %}
+                                                Editeur
+                                        {% elseif role == "ROLE_ADMIN" %}
+                                                Administrateur
+                                        {% endif %}
+                                        {% endfor %}
+                                </font></td>
+                                <td><font style="vertical-align: inherit;">
+                                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-info">Editer</a>
+                                        <form method="post" action="{{path('user_remove', {'id': app.user.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes vous vraiment sur ?')">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id)}}">
+                                        <button class="btn btn-primary">Supprimer</button>
+                                        </form>
+                                </font></td>
+                        </tr> 
+
+                    </tbody>
+                    </table>
+                        </article>
+                        <article class="card text-center">
+                                <div class="card-body">
+                                        <h1 style="color:#0f5f9c; font-weight:bold;font-size:35px;">Mes actions</h1>
+                                </div>
+                        </article>
+                        <article class="card">
+                                <div class="card-body">
+                                        <div class="container">
+                                                <div class="row align-items-start">
+                                                        <div class="col">
+                                                                <div>Inscription événements : </div>
+                                                                <ul>
+                                                                        <li><a class="item" href="#">événements 1</a></li>
+                                                                        <li><a class="item" href="#">événements 2</a></li>
+                                                                        <li><a class="item" href="#">événements 3</a></li>
+                                                                        <li><a class="item" href="#">événements 4</a></li>
+                                                                </ul>
+                                                        </div>
+                                                        <div class="col">
+                                                                <div>Bénévolat : </div>
+                                                                <ul>
+                                                                        <li><a class="item" href="#">Bénévolat 1</a></li>
+                                                                        <li><a class="item" href="#">Bénévolat 2</a></li>
+                                                                        <li><a class="item" href="#">Bénévolat 3</a></li>
+                                                                        <li><a class="item" href="#">Bénévolat 4</a></li>
+                                                                </ul>
+                                                        </div>
+                                                </div>
+                                        </div>
+
+
+                                </div>
+                        </article>
+                </main>
+        </div>
+</div>
+
+
+{% endblock %}  

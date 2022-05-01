@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adhérents Plus Belle L'Haÿ {{annee}}{% endblock %}
+
+
+{% block body %}
+ 
+    <div class="container mt-4 mb-4  text-center ">
+        <h1>Adhérents Plus Belle L'Haÿ {{annee}}</h1>
+    </div>
+ 
+    <div class="card-body mt-4">
+                <form name="annee" action="{{path('show.index')}}" method="post">
+                    <div class="row align-items-center">
+                        {{ form_start(form)}}
+                            <div class="col col-lg-auto">
+                                {{ form_row(form.annee,
+                                            {'label': "Choisir une annee",
+                                                'attr': {
+                                                    'onchange': "window.document.annee.submit()"
+                                                }
+                                            })}}
+                            </div>
+                        {{ form_end(form) }} 
+                    </div>
+                </form>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Civilite</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nom D'usage</th>
+                    <th scope="col">Prénoms</th>
+                    <th scope="col">Date De Naissance</th>
+                    <th scope="col">adhésion PBL {{annee}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for adherent in adherents %}
+                        <div class="col-md-4">
+                
+                <td>{{ adherent.Civilite}}</td>
+                <td>{{ adherent.Nom}}</td>
+                <td>{{ adherent.NomDusage}}</td>
+                <td>{{ adherent.Prenoms}}</td>
+                <td>{{ adherent.DateDeNaissance }}</td>
+                <td> {% set adhesion = "adhesionpbl" ~ annee %}
+                <input class="form-check form-check-input bg-primary {% if attribute(adherent, adhesion) == 'VRAI' %}bg-success {% endif %}" {% if  is_granted('ROLE_CAPTURE') == false %} disabled {% endif %} type="checkbox" value="{{ attribute(adherent, adhesion)}} "  {% if attribute(adherent, adhesion) == 'VRAI' %}checked {% endif %}>
+                </td>
+                 </tr>           
+                        </div>
+                    {% endfor %}
+            </tbody>
+        </table>
+
+            {{ knp_pagination_render( adherents , 'others/twitter_bootstrap_v4_pagination.html.twig' ) }} 
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<!-- Mon container (avec une max-width) dans lequel mon contenu va être placé: https://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+<div class="container ">
+    <!-- Je crée une nouvelle ligne dans ma grille virtuelle: https://getbootstrap.com/docs/4.1/layout/grid/-->
+    <div class="row">
+        <!-- Par défaut (= sur mobile) mon element <main> prend toutes les colonnes (=12)
+        MAIS au dela d'une certaine taille, il n'en prendra plus que 9
+        https://getbootstrap.com/docs/4.1/layout/grid/#grid-options -->
+        <main  >
+            <!-- Je dispose une card: https://getbootstrap.com/docs/4.1/components/card/ -->
+            <article class="card text-center">
+                <div class="card-body">
+                    <h1 style="color:#0f5f9c; font-weight:bold;font-size:35px;">Année Election : </h1>
+                    <div class="btn-group dropright" role="group">
+                        <button type="button" class="btn btn-secondary"><a href="{{path('user')}}">Elections</a></button>
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"> 
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu btn-primary">
+                        {% for i in 2014..2021 %}
+                            <li><a class="dropdown-item" href="{{ path('user_edit', {'id': i }) }}">{{i}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Taper</font></font></th>
+                        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En-tête de colonne</font></font></th>
+                        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En-tête de colonne</font></font></th>
+                        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En-tête de colonne</font></font></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-active">
+                        <th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">actif</font></font></th>
+                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contenu de la colonne</font></font></td>
+                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contenu de la colonne</font></font></td>
+                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contenu de la colonne</font></font></td>
+                        </tr>
+                        <tr>
+                        <th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Défaut</font></font></th>
+                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contenu de la colonne</font></font></td>
+                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contenu de la colonne</font></font></td>
+                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contenu de la colonne</font></font></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </article>
+        </main>
+    </div>
+</div>
+{% endblock %}

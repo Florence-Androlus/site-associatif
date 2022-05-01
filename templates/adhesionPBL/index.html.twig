@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les adhérents Plus Belle L'Haÿ{% endblock %}
+
+
+{% block body %}
+ 
+    <div class="container mt-4 mb-4  text-center ">
+        <h1>Tous les adhérents Plus Belle L'Haÿ</h1>
+    </div>
+ 
+        <div class="card-body mt-4">
+                <form name="annee" action="{{path('show.index')}}" method="post">
+                    <div class="row align-items-center">
+                        {{ form_start(form)}}
+                            <div class="col col-lg-auto">
+                                {{ form_row(form.annee,
+                                            {'label': "Choisir une année",
+                                                'attr': {
+                                                    'onchange': "window.document.annee.submit()"
+                                                }
+                                            })
+                                }}
+                            </div>
+                        {{ form_end(form) }} 
+                    </div>
+                </form>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Civilite</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nom D'usage</th>
+                    <th scope="col">Prénoms</th>
+                    <th scope="col">Date De Naissance</th>
+                    <th scope="col">Fixe</th>
+                    <th scope="col">Portable</th>
+                    <th scope="col">adhésion PBL 2015</th>
+                    <th scope="col">adhésion PBL 2016</th>
+                    <th scope="col">adhésion PBL 2017</th>                   
+                    <th scope="col">adhésion PBL 2018</th>
+                    <th scope="col">adhésion PBL 2019</th>                    
+                    <th scope="col">adhésion PBL 2020</th>
+                    <th scope="col">adhésion PBL 2021</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for cs2020 in adhesion %}
+                        <div class="col-md-4">
+                            {% include 'adhesionPBL/_adhesionPBL.html.twig' %}            
+                        </div>
+                    {% endfor %}
+            </tbody>
+        </table>
+
+            {{ knp_pagination_render( adhesion , 'others/twitter_bootstrap_v4_pagination.html.twig' ) }} 
+
+{% endblock %}

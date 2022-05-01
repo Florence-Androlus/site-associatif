@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+
+<!-- Mon container (avec une max-width) dans lequel mon contenu va être placé: https://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+<div class="container ">
+    <!-- Je crée une nouvelle ligne dans ma grille virtuelle: https://getbootstrap.com/docs/4.1/layout/grid/-->
+    <div class="row">
+        <!-- Par défaut (= sur mobile) mon element <main> prend toutes les colonnes (=12)
+        MAIS au dela d'une certaine taille, il n'en prendra plus que 9
+        https://getbootstrap.com/docs/4.1/layout/grid/#grid-options -->
+        <main  class=" text-center">
+
+            <!-- Je dispose une card: https://getbootstrap.com/docs/4.1/components/card/ -->
+            <article class="card">
+                <div class="card-body">
+                    <h1 style="color:#0f5f9c;">Mot de passe oublié ?</h1>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-body">
+                    <h3 style="color:#0f5f9c;">Demandez à réinitialiser votre mot de passe en renseignant votre mail.</h3>
+                </div>
+                <div class="card-body">
+                            {{form_start(form)}}
+                            {{form_row(form.email)}}
+                            <button type="submit" class="btn btn-success">Envoyer</button>
+                            {{form_end(form)}}
+                </div>
+            </article>
+
+        </main>
+    </div>
+</div>
+{% endblock %}
